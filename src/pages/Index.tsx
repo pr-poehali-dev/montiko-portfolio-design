@@ -47,10 +47,10 @@ const Index = () => {
   ];
 
   const collections = [
-    { name: 'Темная романтика', year: '2024', pieces: 15, color: 'text-primary' },
-    { name: 'Театральный авангард', year: '2024', pieces: 12, color: 'text-secondary' },
-    { name: 'Готическая роскошь', year: '2023', pieces: 10, color: 'text-primary' },
-    { name: 'Мрачная элегантность', year: '2023', pieces: 8, color: 'text-secondary' },
+    { name: 'Темная романтика', year: '2024', pieces: 15 },
+    { name: 'Театральный авангард', year: '2024', pieces: 12 },
+    { name: 'Готическая роскошь', year: '2023', pieces: 10 },
+    { name: 'Мрачная элегантность', year: '2023', pieces: 8 },
   ];
 
   const scrollToSection = (sectionId: string) => {
@@ -60,137 +60,205 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b-2 border-primary/30">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <h1 className="text-3xl font-bold tracking-wider bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">MONTIKO</h1>
-            <div className="hidden md:flex gap-8 items-center">
-              {['home', 'portfolio', 'about', 'collections', 'contact'].map((section) => (
-                <button
-                  key={section}
-                  onClick={() => scrollToSection(section)}
-                  className={`text-sm tracking-[0.2em] uppercase transition-colors font-bold hover:text-primary ${
-                    activeSection === section ? 'text-primary' : 'text-muted-foreground'
-                  }`}
-                >
-                  {section === 'home' ? 'Главная' : 
-                   section === 'portfolio' ? 'Портфолио' :
-                   section === 'about' ? 'О бренде' :
-                   section === 'collections' ? 'Коллекции' : 'Контакты'}
-                </button>
-              ))}
-            </div>
-            <button className="md:hidden">
-              <Icon name="Menu" size={24} />
-            </button>
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+      <nav className="fixed top-8 right-8 z-50 flex flex-col gap-4">
+        <div className="bg-background/90 backdrop-blur-md border-2 border-primary/30 p-6">
+          <h1 className="text-2xl font-bold tracking-wider bg-gradient-to-b from-primary to-secondary bg-clip-text text-transparent mb-6 [writing-mode:vertical-rl] rotate-180">
+            MONTIKO
+          </h1>
+          <div className="flex flex-col gap-6 items-end">
+            {['home', 'portfolio', 'about', 'collections', 'contact'].map((section) => (
+              <button
+                key={section}
+                onClick={() => scrollToSection(section)}
+                className={`text-xs tracking-[0.3em] uppercase transition-all font-bold hover:text-primary rotate-0 hover:rotate-6 ${
+                  activeSection === section ? 'text-primary scale-125' : 'text-muted-foreground'
+                }`}
+              >
+                {section === 'home' ? '●' : 
+                 section === 'portfolio' ? '■' :
+                 section === 'about' ? '▲' :
+                 section === 'collections' ? '◆' : '★'}
+              </button>
+            ))}
           </div>
         </div>
       </nav>
 
-      <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-secondary/5 to-transparent" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(220,20,60,0.1),transparent_50%)]" />
-        <div className="container mx-auto px-6 text-center relative z-10">
-          <div className="animate-dramatic-entrance">
-            <h2 className="text-7xl md:text-9xl font-bold mb-6 tracking-tight bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent">
-              MONTIKO
+      <section id="home" className="min-h-screen flex items-center relative overflow-hidden py-20">
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/10 to-transparent" />
+        <div className="absolute bottom-0 left-0 w-1/3 h-2/3 bg-gradient-to-tr from-secondary/10 to-transparent" />
+        
+        <div className="container mx-auto px-8 grid grid-cols-12 gap-8 relative z-10">
+          <div className="col-span-12 md:col-span-7 flex flex-col justify-center">
+            <div className="mb-8">
+              <div className="w-2 h-32 bg-primary mb-6 animate-pulse-glow" />
+            </div>
+            <h2 className="text-6xl md:text-8xl font-bold mb-8 leading-none animate-dramatic-entrance">
+              <span className="block text-primary">MON</span>
+              <span className="block text-secondary ml-16">TIKO</span>
             </h2>
+            <div className="ml-32 space-y-4">
+              <p className="text-2xl font-bold uppercase tracking-[0.4em] text-muted-foreground">
+                Дизайн
+              </p>
+              <p className="text-4xl font-bold text-foreground">
+                Костюма
+              </p>
+            </div>
           </div>
-          <p className="text-xl md:text-3xl text-foreground mb-8 animate-slide-up font-bold tracking-[0.3em] uppercase">
-            Дизайн Костюма
-          </p>
-          <div className="flex gap-4 justify-center mb-8">
-            <div className="w-16 h-1 bg-primary animate-pulse-glow" />
-            <div className="w-16 h-1 bg-secondary animate-pulse-glow" style={{ animationDelay: '0.3s' }} />
-            <div className="w-16 h-1 bg-primary animate-pulse-glow" style={{ animationDelay: '0.6s' }} />
+          
+          <div className="col-span-12 md:col-span-5 flex items-end">
+            <div className="w-full animate-slide-up">
+              <p className="text-lg text-muted-foreground leading-relaxed mb-8 border-l-4 border-primary pl-6">
+                Смелость, драма и бескомпромиссный стиль. Мы создаём костюмы, которые провоцируют и восхищают.
+              </p>
+              <Button 
+                onClick={() => scrollToSection('portfolio')}
+                className="px-10 py-7 text-lg font-bold bg-primary hover:bg-secondary border-2 border-primary hover:border-secondary transition-all duration-500 transform hover:scale-105 hover:-rotate-2"
+              >
+                Открыть портфолио →
+              </Button>
+            </div>
           </div>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto animate-fade-in leading-relaxed">
-            Смелость, драма и бескомпромиссный стиль. Мы создаём костюмы, которые провоцируют и восхищают.
-          </p>
-          <Button 
-            onClick={() => scrollToSection('portfolio')}
-            className="mt-12 px-10 py-7 text-lg font-bold hover-scale bg-primary hover:bg-primary/90 border-2 border-primary hover:border-secondary transition-all duration-300"
-          >
-            Войти в мир MONTIKO
-          </Button>
+        </div>
+
+        <div className="absolute bottom-8 left-8 flex gap-2 animate-fade-in">
+          <div className="w-24 h-1 bg-primary" />
+          <div className="w-16 h-1 bg-secondary" />
+          <div className="w-8 h-1 bg-primary" />
         </div>
       </section>
 
-      <section id="portfolio" className="py-24 bg-card relative">
-        <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent" />
-        <div className="container mx-auto px-6 relative z-10">
-          <h2 className="text-5xl md:text-7xl font-bold mb-4 text-center">Портфолио</h2>
-          <div className="flex gap-2 justify-center mb-16">
-            <div className="w-12 h-1 bg-primary" />
-            <div className="w-12 h-1 bg-secondary" />
+      <section id="portfolio" className="min-h-screen py-24 relative">
+        <div className="absolute top-1/4 left-0 w-1/4 h-1/2 bg-gradient-to-r from-primary/5 to-transparent" />
+        
+        <div className="container mx-auto px-8">
+          <div className="flex items-start mb-16">
+            <div className="w-1/3">
+              <h2 className="text-7xl font-bold text-primary mb-4 transform -rotate-3">Портфолио</h2>
+              <div className="h-2 w-32 bg-secondary" />
+            </div>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {portfolioItems.map((item, index) => (
-              <div
-                key={item.id}
-                className="group cursor-pointer animate-fade-in"
-                style={{ animationDelay: `${index * 0.2}s` }}
-                onClick={() => setSelectedImage(item.image)}
+
+          <div className="space-y-12">
+            <div className="grid grid-cols-12 gap-6">
+              <div 
+                className="col-span-12 md:col-span-7 group cursor-pointer animate-fade-in"
+                onClick={() => setSelectedImage(portfolioItems[0].image)}
               >
-                <div className="relative overflow-hidden bg-black aspect-[3/4] border-2 border-transparent group-hover:border-primary transition-all duration-500">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-75"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-secondary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                <div className="relative overflow-hidden bg-black aspect-[16/10] border-2 border-transparent group-hover:border-primary transition-all duration-500 transform group-hover:scale-[1.02] group-hover:rotate-1">
+                  <img src={portfolioItems[0].image} alt={portfolioItems[0].title} className="w-full h-full object-cover group-hover:brightness-75 transition-all duration-700" />
+                  <div className="absolute top-6 left-6 bg-primary/90 px-4 py-2">
+                    <p className="text-xs text-white uppercase tracking-[0.2em] font-bold">{portfolioItems[0].category}</p>
+                  </div>
+                  <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <h3 className="text-3xl font-bold text-white">{portfolioItems[0].title}</h3>
+                  </div>
+                </div>
+              </div>
+
+              <div 
+                className="col-span-12 md:col-span-5 group cursor-pointer animate-fade-in"
+                style={{ animationDelay: '0.2s' }}
+                onClick={() => setSelectedImage(portfolioItems[1].image)}
+              >
+                <div className="relative overflow-hidden bg-black aspect-[4/5] border-2 border-transparent group-hover:border-secondary transition-all duration-500 transform group-hover:scale-[1.02] group-hover:-rotate-1">
+                  <img src={portfolioItems[1].image} alt={portfolioItems[1].title} className="w-full h-full object-cover group-hover:brightness-75 transition-all duration-700" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-secondary/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
                     <div>
-                      <p className="text-xs text-white uppercase tracking-[0.2em] mb-2 font-bold">
-                        {item.category}
-                      </p>
-                      <h3 className="text-2xl font-bold text-white">{item.title}</h3>
+                      <p className="text-xs text-white uppercase tracking-[0.2em] mb-2 font-bold">{portfolioItems[1].category}</p>
+                      <h3 className="text-2xl font-bold text-white">{portfolioItems[1].title}</h3>
                     </div>
                   </div>
                 </div>
               </div>
-            ))}
+            </div>
+
+            <div className="grid grid-cols-12 gap-6">
+              <div 
+                className="col-span-12 md:col-span-5 group cursor-pointer animate-fade-in"
+                style={{ animationDelay: '0.4s' }}
+                onClick={() => setSelectedImage(portfolioItems[2].image)}
+              >
+                <div className="relative overflow-hidden bg-black aspect-[4/5] border-2 border-transparent group-hover:border-primary transition-all duration-500 transform group-hover:scale-[1.02]">
+                  <img src={portfolioItems[2].image} alt={portfolioItems[2].title} className="w-full h-full object-cover group-hover:brightness-75 transition-all duration-700" />
+                  <div className="absolute bottom-0 left-0 right-0 bg-primary/90 p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                    <p className="text-xs text-white uppercase tracking-[0.2em] mb-1 font-bold">{portfolioItems[2].category}</p>
+                    <h3 className="text-xl font-bold text-white">{portfolioItems[2].title}</h3>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-span-12 md:col-span-7 grid grid-cols-2 gap-6">
+                {portfolioItems.slice(3, 6).map((item, index) => (
+                  <div 
+                    key={item.id}
+                    className="group cursor-pointer animate-fade-in"
+                    style={{ animationDelay: `${0.6 + index * 0.2}s` }}
+                    onClick={() => setSelectedImage(item.image)}
+                  >
+                    <div className="relative overflow-hidden bg-black aspect-square border-2 border-transparent group-hover:border-secondary transition-all duration-500">
+                      <img src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:brightness-75 group-hover:scale-110 transition-all duration-700" />
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-black/50">
+                        <Icon name="ZoomIn" size={48} className="text-white" />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="about" className="py-24 relative">
-        <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-primary/5" />
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-5xl md:text-7xl font-bold mb-4 text-center">О бренде</h2>
-            <div className="flex gap-2 justify-center mb-16">
-              <div className="w-12 h-1 bg-secondary" />
-              <div className="w-12 h-1 bg-primary" />
-            </div>
-            
-            <div className="grid md:grid-cols-2 gap-12 items-center">
+      <section id="about" className="min-h-screen py-24 relative">
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-secondary/5 to-transparent" />
+        
+        <div className="container mx-auto px-8">
+          <div className="grid grid-cols-12 gap-12">
+            <div className="col-span-12 md:col-span-6 flex flex-col justify-center">
+              <div className="mb-8">
+                <h2 className="text-7xl font-bold mb-6">
+                  <span className="block text-secondary">О</span>
+                  <span className="block text-primary ml-12">Бренде</span>
+                </h2>
+                <div className="flex gap-2 ml-12">
+                  <div className="w-12 h-1 bg-secondary" />
+                  <div className="w-12 h-1 bg-primary" />
+                </div>
+              </div>
+              
               <div className="space-y-6 text-muted-foreground leading-relaxed">
-                <p className="text-xl font-medium">
-                  MONTIKO — это манифест бескомпромиссного стиля. Мы не следуем трендам, мы их создаём.
+                <p className="text-2xl font-bold text-foreground border-l-4 border-primary pl-6">
+                  MONTIKO — это манифест бескомпромиссного стиля.
                 </p>
-                <p className="text-lg">
+                <p className="text-lg pl-6">
                   Каждый костюм — это произведение искусства, рождённое на грани моды и провокации. 
                   Мы не боимся быть смелыми, драматичными, шокирующими.
                 </p>
-                <p className="text-lg">
+                <p className="text-lg pl-6">
                   Вдохновлённые духом Александра Маквина, мы создаём образы, которые останавливают взгляд 
-                  и заставляют чувствовать. Тьма и свет, сила и уязвимость — контрасты, которые делают нас живыми.
+                  и заставляют чувствовать.
                 </p>
               </div>
-              <div className="space-y-8">
-                <div className="border-l-4 border-primary pl-6 hover:border-secondary transition-colors duration-300">
-                  <p className="text-5xl font-bold text-primary mb-2 animate-float">15+</p>
-                  <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground font-bold">Лет бунта</p>
+            </div>
+
+            <div className="col-span-12 md:col-span-6 flex items-center">
+              <div className="w-full space-y-8">
+                <div className="bg-card border-l-8 border-primary p-8 transform hover:scale-105 hover:rotate-1 transition-all duration-300">
+                  <p className="text-6xl font-bold text-primary mb-2 animate-float">15+</p>
+                  <p className="text-sm uppercase tracking-[0.3em] text-muted-foreground font-bold">Лет бунта</p>
                 </div>
-                <div className="border-l-4 border-secondary pl-6 hover:border-primary transition-colors duration-300">
-                  <p className="text-5xl font-bold text-secondary mb-2 animate-float" style={{ animationDelay: '0.5s' }}>500+</p>
-                  <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground font-bold">Смелых образов</p>
+                
+                <div className="bg-card border-l-8 border-secondary p-8 ml-16 transform hover:scale-105 hover:-rotate-1 transition-all duration-300">
+                  <p className="text-6xl font-bold text-secondary mb-2 animate-float" style={{ animationDelay: '0.5s' }}>500+</p>
+                  <p className="text-sm uppercase tracking-[0.3em] text-muted-foreground font-bold">Смелых образов</p>
                 </div>
-                <div className="border-l-4 border-primary pl-6 hover:border-secondary transition-colors duration-300">
-                  <p className="text-5xl font-bold text-primary mb-2 animate-float" style={{ animationDelay: '1s' }}>20</p>
-                  <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground font-bold">Провокаций</p>
+                
+                <div className="bg-card border-l-8 border-primary p-8 ml-8 transform hover:scale-105 hover:rotate-1 transition-all duration-300">
+                  <p className="text-6xl font-bold text-primary mb-2 animate-float" style={{ animationDelay: '1s' }}>20</p>
+                  <p className="text-sm uppercase tracking-[0.3em] text-muted-foreground font-bold">Провокаций</p>
                 </div>
               </div>
             </div>
@@ -198,30 +266,35 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="collections" className="py-24 bg-card relative">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(139,69,255,0.1),transparent_50%)]" />
-        <div className="container mx-auto px-6 relative z-10">
-          <h2 className="text-5xl md:text-7xl font-bold mb-4 text-center">Коллекции</h2>
-          <div className="flex gap-2 justify-center mb-16">
-            <div className="w-12 h-1 bg-primary" />
-            <div className="w-12 h-1 bg-secondary" />
+      <section id="collections" className="min-h-screen py-24 bg-card relative">
+        <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-gradient-to-tr from-primary/10 to-transparent" />
+        
+        <div className="container mx-auto px-8">
+          <div className="flex justify-end mb-16">
+            <div className="text-right">
+              <h2 className="text-7xl font-bold text-primary mb-4 transform rotate-2">Коллекции</h2>
+              <div className="h-2 w-32 bg-secondary ml-auto" />
+            </div>
           </div>
-          
-          <div className="max-w-3xl mx-auto space-y-6">
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {collections.map((collection, index) => (
               <div
                 key={index}
-                className="border-2 border-border p-10 hover:border-primary hover:bg-primary/5 transition-all duration-300 hover-scale relative overflow-hidden group"
+                className="group relative overflow-hidden"
+                style={{ animationDelay: `${index * 0.2}s` }}
               >
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/20 to-secondary/20 blur-3xl group-hover:scale-150 transition-transform duration-500" />
-                <div className="relative z-10">
-                  <div className="flex justify-between items-start mb-4">
-                    <h3 className={`text-4xl font-bold ${collection.color}`}>{collection.name}</h3>
-                    <span className="text-sm text-secondary uppercase tracking-[0.2em] font-bold">{collection.year}</span>
+                <div className={`border-4 border-border p-12 hover:border-primary transition-all duration-500 bg-background transform hover:scale-105 ${index % 2 === 0 ? 'hover:rotate-1' : 'hover:-rotate-1'}`}>
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/20 to-secondary/20 blur-3xl group-hover:scale-150 transition-transform duration-500" />
+                  <div className="relative z-10">
+                    <span className="text-xs text-secondary uppercase tracking-[0.3em] font-bold block mb-2">{collection.year}</span>
+                    <h3 className="text-4xl font-bold text-primary mb-4">{collection.name}</h3>
+                    <div className="flex items-center gap-4">
+                      <div className="h-1 flex-1 bg-primary" />
+                      <p className="text-2xl font-bold text-foreground">{collection.pieces}</p>
+                    </div>
+                    <p className="text-sm text-muted-foreground mt-2 uppercase tracking-wider">Произведений искусства</p>
                   </div>
-                  <p className="text-muted-foreground text-lg">
-                    <span className="font-bold text-primary">{collection.pieces}</span> произведений искусства
-                  </p>
                 </div>
               </div>
             ))}
@@ -229,55 +302,74 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="contact" className="py-24 relative">
-        <div className="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent" />
-        <div className="container mx-auto px-6 relative z-10">
-          <h2 className="text-5xl md:text-7xl font-bold mb-4 text-center">Контакты</h2>
-          <div className="flex gap-2 justify-center mb-16">
-            <div className="w-12 h-1 bg-secondary" />
-            <div className="w-12 h-1 bg-primary" />
-          </div>
-          
-          <div className="max-w-2xl mx-auto text-center space-y-8">
-            <p className="text-xl text-foreground font-medium">
-              Готовы к трансформации? Свяжитесь с нами.
-            </p>
-            
-            <div className="grid md:grid-cols-3 gap-8 mt-12">
-              <div className="space-y-2">
-                <Icon name="Phone" size={32} className="mx-auto text-primary mb-4" />
-                <p className="text-sm uppercase tracking-wider text-muted-foreground">Телефон</p>
-                <p className="font-light">+7 (XXX) XXX-XX-XX</p>
+      <section id="contact" className="min-h-screen py-24 flex items-center relative">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5" />
+        
+        <div className="container mx-auto px-8 relative z-10">
+          <div className="grid grid-cols-12 gap-12">
+            <div className="col-span-12 md:col-span-5">
+              <h2 className="text-7xl font-bold mb-8">
+                <span className="block text-primary">Кон</span>
+                <span className="block text-secondary ml-8">такты</span>
+              </h2>
+              <div className="flex gap-2 mb-8">
+                <div className="w-12 h-1 bg-primary" />
+                <div className="w-12 h-1 bg-secondary" />
               </div>
-              <div className="space-y-2">
-                <Icon name="Mail" size={32} className="mx-auto text-secondary mb-4" />
-                <p className="text-sm uppercase tracking-wider text-muted-foreground">Email</p>
-                <p className="font-light">info@montiko.ru</p>
-              </div>
-              <div className="space-y-2">
-                <Icon name="MapPin" size={32} className="mx-auto text-primary mb-4" />
-                <p className="text-sm uppercase tracking-wider text-muted-foreground">Адрес</p>
-                <p className="font-light">Москва, ЦАО</p>
-              </div>
+              <p className="text-2xl text-foreground font-medium mb-12">
+                Готовы к трансформации?
+              </p>
             </div>
 
-            <Button className="mt-12 px-10 py-7 text-lg font-bold hover-scale bg-gradient-to-r from-primary to-secondary hover:from-secondary hover:to-primary transition-all duration-500 border-2 border-primary">
-              Начать трансформацию
-            </Button>
+            <div className="col-span-12 md:col-span-7 space-y-8">
+              <div className="bg-card border-l-8 border-primary p-8 transform hover:scale-105 hover:rotate-1 transition-all duration-300">
+                <Icon name="Phone" size={32} className="text-primary mb-4" />
+                <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2">Телефон</p>
+                <p className="text-xl font-light">+7 (XXX) XXX-XX-XX</p>
+              </div>
+
+              <div className="bg-card border-l-8 border-secondary p-8 ml-16 transform hover:scale-105 hover:-rotate-1 transition-all duration-300">
+                <Icon name="Mail" size={32} className="text-secondary mb-4" />
+                <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2">Email</p>
+                <p className="text-xl font-light">info@montiko.ru</p>
+              </div>
+
+              <div className="bg-card border-l-8 border-primary p-8 ml-8 transform hover:scale-105 hover:rotate-1 transition-all duration-300">
+                <Icon name="MapPin" size={32} className="text-primary mb-4" />
+                <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2">Адрес</p>
+                <p className="text-xl font-light">Москва, ЦАО</p>
+              </div>
+
+              <div className="ml-16">
+                <Button className="px-12 py-8 text-xl font-bold bg-gradient-to-r from-primary to-secondary hover:from-secondary hover:to-primary transition-all duration-500 border-4 border-primary transform hover:scale-110 hover:-rotate-2">
+                  Начать трансформацию →
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <footer className="py-16 border-t-2 border-primary/30 bg-card relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent" />
-        <div className="container mx-auto px-6 text-center relative z-10">
-          <h3 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">MONTIKO</h3>
-          <p className="text-sm text-muted-foreground uppercase tracking-[0.3em] font-bold">
-            Дизайн костюма • 2024
-          </p>
-          <p className="text-xs text-muted-foreground mt-4 italic">
-            "Мода умирает молодой, стиль — никогда"
-          </p>
+      <footer className="py-16 border-t-4 border-primary/30 bg-card relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/5 to-transparent" />
+        <div className="container mx-auto px-8 relative z-10">
+          <div className="flex justify-between items-end">
+            <div>
+              <h3 className="text-5xl font-bold mb-4">
+                <span className="text-primary">MON</span>
+                <span className="text-secondary">TIKO</span>
+              </h3>
+              <p className="text-xs text-muted-foreground italic">
+                "Мода умирает молодой, стиль — никогда"
+              </p>
+            </div>
+            <div className="text-right">
+              <p className="text-sm text-muted-foreground uppercase tracking-[0.3em] font-bold">
+                Дизайн костюма
+              </p>
+              <p className="text-xs text-muted-foreground mt-2">2024</p>
+            </div>
+          </div>
         </div>
       </footer>
 
